@@ -150,7 +150,9 @@ require("lazy").setup({
             "ms-jpq/coq.thirdparty"
         },
         config = function()
-            vim.g.coq_settings = { auto_start = true, }
+            vim.g.coq_settings = {
+                auto_start = true,
+            }
 
             vim.cmd{ cmd = "COQnow", args = {"-s"} }
         end,
