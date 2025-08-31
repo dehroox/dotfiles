@@ -29,14 +29,17 @@ vim.opt.incsearch = true
 -- Behavior
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
-vim.opt.updatetime = 300
-vim.opt.timeoutlen = 600
+vim.opt.lazyredraw = true
+vim.opt.mouse = "a"
+vim.opt.updatetime = 200
+vim.opt.timeoutlen = 500
 vim.opt.ttimeoutlen = 10
 vim.opt.pumheight = 10
 vim.opt.autowrite = true
 vim.opt.autoread = true
 vim.opt.undofile = true
 vim.opt.wildoptions = "pum"
+vim.opt.pumblend = 10
 
 -- Undo dir
 local undodir = vim.fn.stdpath("state") .. "/undo"
@@ -156,7 +159,7 @@ require("lazy").setup({
                 nerd_font_variant = "mono",
             },
 
-            completion = { documentation = { auto_show = true, auto_show_delay_ms = 500 } },
+            completion = { documentation = { auto_show = true, auto_show_delay_ms = 200 } },
 
             sources = {
                 default = { "lsp", "path", "snippets", "buffer" },
@@ -210,6 +213,21 @@ require("lazy").setup({
                 options = {},
             })
         end,
+    },
+
+    -- Which-key
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {},
+        keys = {
+            {
+                "<leader>?",
+                function()
+                    require("which-key").show({ global = false })
+                end,
+            },
+        },
     },
 })
 
