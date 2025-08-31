@@ -2,3 +2,6 @@
 
 lazy-lock.json
 undo/
+fish_history
+fishd.*
+generated_completions/*
