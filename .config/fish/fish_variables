@@ -6,6 +6,8 @@ SETUVAR _fisher_jorgebucaran_2F_hydro_files:\x7e/\x2econfig/fish/functions/fish_
 SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejorgebucaran/hydro
 SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR _hydro_git_434445:master\u2022\x20
+SETUVAR _hydro_git_568405:master\u2022\x20
+SETUVAR _hydro_git_569315:master\u2022\x20
 SETUVAR fish_color_autosuggestion:brblack
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:normal
