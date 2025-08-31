@@ -6,19 +6,17 @@ vim.opt.termguicolors   = true
 vim.opt.number          = true
 vim.opt.relativenumber  = true
 vim.opt.cursorline      = true
-vim.opt.signcolumn      = "yes"
+vim.opt.signcolumn      = "yes:1"
 vim.opt.numberwidth     = 2
 vim.opt.list            = true
 vim.opt.listchars       = { tab = "» ", trail = "•" }
 vim.opt.wrap            = false
 vim.opt.linebreak       = true
-vim.opt.cmdheight       = 0
 vim.opt.laststatus      = 3
-vim.opt.showcmd         = false
 
 -- Indentation
 vim.opt.tabstop     = 4
-vim.opt.shiftwidth  = 0   -- uses tabstop if 0
+vim.opt.shiftwidth  = 4
 vim.opt.expandtab   = true
 vim.opt.smartindent = true
 
@@ -31,8 +29,8 @@ vim.opt.incsearch  = true
 -- Behavior
 vim.opt.scrolloff     = 8
 vim.opt.sidescrolloff = 8
-vim.opt.updatetime    = 200
-vim.opt.timeoutlen    = 500
+vim.opt.updatetime    = 300
+vim.opt.timeoutlen    = 600
 vim.opt.ttimeoutlen   = 10
 vim.opt.pumheight     = 10
 vim.opt.autowrite     = true
@@ -44,10 +42,6 @@ vim.opt.wildoptions   = "pum"
 local undodir = vim.fn.stdpath("state") .. "/undo"
 vim.opt.undodir = undodir
 
--- Keymaps
-vim.keymap.set("n", "<Leader>w", "<cmd>w<cr>", { silent = true })
-vim.keymap.set("n", "<Leader>q", "<cmd>q<cr>", { silent = true })
-
 -- Lua loader
 vim.loader.enable()
 
@@ -55,7 +49,7 @@ vim.loader.enable()
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({
-        "git", "clone", "--filter=blob:none",
+        "git", "clone", "--filter=blob:none", "--depth=1",
         "https://github.com/folke/lazy.nvim.git",
         "--branch=stable", lazypath,
     })
@@ -99,15 +93,9 @@ require("lazy").setup({
 
     -- Telescope
     {
-        "nvim-telescope/telescope.nvim",
+       "nvim-telescope/telescope.nvim",
         cmd = "Telescope",
         dependencies = { "nvim-lua/plenary.nvim" },
-        keys = {
-            { "<leader>ff", function() require("telescope.builtin").find_files() end, desc = "Find files" },
-            { "<leader>fg", function() require("telescope.builtin").live_grep()  end, desc = "Live grep"  },
-            { "<leader>fb", function() require("telescope.builtin").buffers()    end, desc = "Buffers"    },
-            { "<leader>fh", function() require("telescope.builtin").help_tags()  end, desc = "Help tags"  },
-        },
         config = function()
             require("telescope").setup({
                 pickers = {
@@ -123,13 +111,6 @@ require("lazy").setup({
         build = ":TSUpdate",
         opts = {
             ensure_installed = { "lua", "c", "cpp" },
-            highlight = {
-                enable = true,
-                disable = function(_, buf)
-                    local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
-                    return ok and stats and stats.size > 200 * 1024
-                end,
-            },
         },
     },
 
@@ -144,17 +125,18 @@ require("lazy").setup({
     {
         "ms-jpq/coq_nvim",
         branch = "coq",
-        event = "BufReadPre",
         dependencies = {
             "ms-jpq/coq.artifacts",
             "ms-jpq/coq.thirdparty"
         },
         config = function()
+            vim.opt.completeopt = { "menuone", "noselect" }
+
             vim.g.coq_settings = {
-                auto_start = true,
+                auto_start = 'shut-up'
             }
 
-            vim.cmd{ cmd = "COQnow", args = {"-s"} }
+            require("coq")
         end,
     },
 })
@@ -171,3 +153,29 @@ vim.lsp.enable({
     "luals",
     "clangd"
 })
+
+-- Keymaps
+local opts = { noremap = true, silent = true }
+
+vim.keymap.set("n", "<Leader>w", "<cmd>w<CR>", opts)
+vim.keymap.set("n", "<Leader>q", "<cmd>q<CR>", opts)
+
+vim.keymap.set("n", "<Leader>sv", "<C-w>v", opts)  -- vertical split
+vim.keymap.set("n", "<Leader>sh", "<C-w>s", opts)  -- horizontal split
+vim.keymap.set("n", "<Leader>se", "<C-w>=", opts)  -- equalize splits
+vim.keymap.set("n", "<Leader>sx", "<C-w>c", opts)  -- close split
+
+vim.keymap.set("n", "<Leader>bn", ":bnext<CR>", opts)
+vim.keymap.set("n", "<Leader>bp", ":bprevious<CR>", opts)
+vim.keymap.set("n", "<Leader>bd", ":bdelete<CR>", opts)
+
+vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
+vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
+vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
+vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
+
+vim.keymap.set("n", "<Leader>ff", function() require("telescope.builtin").find_files() end, opts)
+vim.keymap.set("n", "<Leader>fg", function() require("telescope.builtin").live_grep() end, opts)
+vim.keymap.set("n", "<Leader>fb", function() require("telescope.builtin").buffers() end, opts)
+vim.keymap.set("n", "<Leader>fh", function() require("telescope.builtin").help_tags() end, opts)
+
