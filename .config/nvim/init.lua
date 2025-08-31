@@ -165,4 +165,7 @@ vim.lsp.config("*", {
     capabilities = lsp_capabilities,
 })
 
-vim.lsp.enable("luals")
+vim.lsp.enable({
+    "luals",
+    "clangd"
+})
