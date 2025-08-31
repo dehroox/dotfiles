@@ -159,7 +159,12 @@ require("lazy").setup({
                 nerd_font_variant = "mono",
             },
 
-            completion = { documentation = { auto_show = true, auto_show_delay_ms = 200 } },
+            completion = {
+                ghost_text = {
+                    enabled = true,
+                },
+                documentation = { auto_show = true, auto_show_delay_ms = 200 },
+            },
 
             sources = {
                 default = { "lsp", "path", "snippets", "buffer" },
@@ -232,10 +237,11 @@ require("lazy").setup({
 })
 
 -- LSP
-local lsp_capabilities = require("blink.cmp").get_lsp_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
 vim.lsp.config("*", {
-    capabilities = lsp_capabilities,
+    capabilities = capabilities,
 })
 
 vim.lsp.enable({
