@@ -114,9 +114,6 @@ require("lazy").setup({
                 extensions = {
                     fzf = {},
                 },
-                highlight = { enable = true },
-                incremental_selection = { enable = true },
-                textobjects = { enable = true },
             })
 
             require('telescope').load_extension("fzf")
@@ -129,6 +126,10 @@ require("lazy").setup({
         build = ":TSUpdate",
         opts = {
             ensure_installed = { "lua", "c", "cpp" },
+            highlight = { enable = true },
+            incremental_selection = { enable = true },
+            textobjects = { enable = true },
+
         },
     },
 
