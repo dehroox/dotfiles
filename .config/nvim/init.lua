@@ -33,7 +33,7 @@ vim.opt.lazyredraw = true
 vim.opt.mouse = "a"
 vim.opt.updatetime = 200
 vim.opt.timeoutlen = 500
-vim.opt.ttimeoutlen = 10
+vim.opt.ttimeoutlen = 20
 vim.opt.pumheight = 10
 vim.opt.autowrite = true
 vim.opt.autoread = true
@@ -63,7 +63,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Misc opt
-vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 
 -- Plugins
 require("lazy").setup({
@@ -213,6 +213,7 @@ require("lazy").setup({
         "akinsho/bufferline.nvim",
         version = "*",
         dependencies = "nvim-tree/nvim-web-devicons",
+        event = "BufReadPost",
         config = function()
             require("bufferline").setup({
                 options = {},
@@ -220,7 +221,6 @@ require("lazy").setup({
         end,
     },
 
-    -- Which-key
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
@@ -254,15 +254,17 @@ local opts = { noremap = true, silent = true }
 
 vim.keymap.set("n", "<Leader>w", "<cmd>w<CR>", opts)
 vim.keymap.set("n", "<Leader>q", "<cmd>q<CR>", opts)
+vim.keymap.set("n", "<Leader>W", "<cmd>wa<CR>", opts)
+vim.keymap.set("n", "<Leader>q", "<cmd>qa<CR>", opts)
 
 vim.keymap.set("n", "<Leader>sv", "<C-w>v", opts) -- vertical split
 vim.keymap.set("n", "<Leader>sh", "<C-w>s", opts) -- horizontal split
 vim.keymap.set("n", "<Leader>se", "<C-w>=", opts) -- equalize splits
 vim.keymap.set("n", "<Leader>sx", "<C-w>c", opts) -- close split
 
-vim.keymap.set("n", "<Leader>bn", ":bnext<CR>", opts)
-vim.keymap.set("n", "<Leader>bp", ":bprevious<CR>", opts)
-vim.keymap.set("n", "<Leader>bd", ":bdelete<CR>", opts)
+vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts)
+vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts)
+vim.keymap.set("n", "<Tab>d", ":bdelete<CR>", opts)
 
 vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
 vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
