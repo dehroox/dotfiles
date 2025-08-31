@@ -173,7 +173,7 @@ require("lazy").setup({
         event = "BufReadPost",
         config = function()
             require("lint").linters_by_ft = {
-                lua = { "luacheck" },
+                lua = { "selene" },
                 c = { "clangtidy" },
                 cpp = { "clangtidy" },
             }
