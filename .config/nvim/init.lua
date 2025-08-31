@@ -2,41 +2,41 @@
 vim.g.mapleader = " "
 
 -- UI
-vim.opt.termguicolors   = true
-vim.opt.number          = true
-vim.opt.relativenumber  = true
-vim.opt.cursorline      = true
-vim.opt.signcolumn      = "yes:1"
-vim.opt.numberwidth     = 2
-vim.opt.list            = true
-vim.opt.listchars       = { tab = "» ", trail = "•" }
-vim.opt.wrap            = false
-vim.opt.linebreak       = true
-vim.opt.laststatus      = 3
+vim.opt.termguicolors = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.cursorline = true
+vim.opt.signcolumn = "yes:1"
+vim.opt.numberwidth = 2
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "•" }
+vim.opt.wrap = false
+vim.opt.linebreak = true
+vim.opt.laststatus = 3
 
 -- Indentation
-vim.opt.tabstop     = 4
-vim.opt.shiftwidth  = 4
-vim.opt.expandtab   = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 -- Search
-vim.opt.hlsearch   = true
+vim.opt.hlsearch = true
 vim.opt.ignorecase = true
-vim.opt.smartcase  = true
-vim.opt.incsearch  = true
+vim.opt.smartcase = true
+vim.opt.incsearch = true
 
 -- Behavior
-vim.opt.scrolloff     = 8
+vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
-vim.opt.updatetime    = 300
-vim.opt.timeoutlen    = 600
-vim.opt.ttimeoutlen   = 10
-vim.opt.pumheight     = 10
-vim.opt.autowrite     = true
-vim.opt.autoread      = true
-vim.opt.undofile      = true
-vim.opt.wildoptions   = "pum"
+vim.opt.updatetime = 300
+vim.opt.timeoutlen = 600
+vim.opt.ttimeoutlen = 10
+vim.opt.pumheight = 10
+vim.opt.autowrite = true
+vim.opt.autoread = true
+vim.opt.undofile = true
+vim.opt.wildoptions = "pum"
 
 -- Undo dir
 local undodir = vim.fn.stdpath("state") .. "/undo"
@@ -49,9 +49,13 @@ vim.loader.enable()
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({
-        "git", "clone", "--filter=blob:none", "--depth=1",
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "--depth=1",
         "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", lazypath,
+        "--branch=stable",
+        lazypath,
     })
 end
 vim.opt.rtp:prepend(lazypath)
@@ -98,9 +102,9 @@ require("lazy").setup({
     {
         "nvim-telescope/telescope.nvim",
         cmd = "Telescope",
-        dependencies = { 
+        dependencies = {
             "nvim-lua/plenary.nvim",
-            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         },
         config = function()
             require("telescope").setup({
@@ -108,7 +112,7 @@ require("lazy").setup({
                     find_files = { theme = "dropdown" },
                 },
                 defaults = {
-                    file_ignore_patterns = {"node_modules", ".git"},
+                    file_ignore_patterns = { "node_modules", ".git" },
                     prompt_prefix = "🔍 ",
                 },
                 extensions = {
@@ -116,7 +120,7 @@ require("lazy").setup({
                 },
             })
 
-            require('telescope').load_extension("fzf")
+            require("telescope").load_extension("fzf")
         end,
     },
 
@@ -129,7 +133,6 @@ require("lazy").setup({
             highlight = { enable = true },
             incremental_selection = { enable = true },
             textobjects = { enable = true },
-
         },
     },
 
@@ -142,33 +145,66 @@ require("lazy").setup({
 
     -- Autocomplete
     {
-        'saghen/blink.cmp',
-        dependencies = { 'rafamadriz/friendly-snippets' },
-        version = '*',
+        "saghen/blink.cmp",
+        dependencies = { "rafamadriz/friendly-snippets" },
+        version = "*",
 
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
         opts = {
-            keymap = { preset = 'default' },
+            keymap = { preset = "default" },
 
             appearance = {
-                nerd_font_variant = 'mono'
+                nerd_font_variant = "mono",
             },
 
-            completion = { documentation = { auto_show = true, auto_show_delay_ms = 500, } },
+            completion = { documentation = { auto_show = true, auto_show_delay_ms = 500 } },
 
             sources = {
-                default = { 'lsp', 'path', 'snippets', 'buffer' },
+                default = { "lsp", "path", "snippets", "buffer" },
             },
 
-            fuzzy = { implementation = "prefer_rust_with_warning" }
+            fuzzy = { implementation = "prefer_rust_with_warning" },
         },
-        opts_extend = { "sources.default" }
-    }
+        opts_extend = { "sources.default" },
+    },
+
+    -- Linting/Formatting
+    {
+        "mfussenegger/nvim-lint",
+        event = "BufReadPost",
+        config = function()
+            require("lint").linters_by_ft = {
+                lua = { "luacheck" },
+                c = { "clangtidy" },
+                cpp = { "clangtidy" },
+            }
+
+            vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
+                callback = function()
+                    require("lint").try_lint()
+                end,
+            })
+        end,
+    },
+    {
+        "stevearc/conform.nvim",
+        event = "BufWritePre",
+        config = function()
+            require("conform").setup({
+                formatters_by_ft = {
+                    lua = { "stylua" },
+                    c = { "clang-format" },
+                    cpp = { "clang-format" },
+                },
+                format_on_save = true,
+            })
+        end,
+    },
 })
 
 -- LSP
-local lsp_capabilities = require('blink.cmp').get_lsp_capabilities()
+local lsp_capabilities = require("blink.cmp").get_lsp_capabilities()
 
 vim.lsp.config("*", {
     capabilities = lsp_capabilities,
@@ -176,7 +212,7 @@ vim.lsp.config("*", {
 
 vim.lsp.enable({
     "luals",
-    "clangd"
+    "clangd",
 })
 
 -- Keymaps
@@ -185,10 +221,10 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<Leader>w", "<cmd>w<CR>", opts)
 vim.keymap.set("n", "<Leader>q", "<cmd>q<CR>", opts)
 
-vim.keymap.set("n", "<Leader>sv", "<C-w>v", opts)  -- vertical split
-vim.keymap.set("n", "<Leader>sh", "<C-w>s", opts)  -- horizontal split
-vim.keymap.set("n", "<Leader>se", "<C-w>=", opts)  -- equalize splits
-vim.keymap.set("n", "<Leader>sx", "<C-w>c", opts)  -- close split
+vim.keymap.set("n", "<Leader>sv", "<C-w>v", opts) -- vertical split
+vim.keymap.set("n", "<Leader>sh", "<C-w>s", opts) -- horizontal split
+vim.keymap.set("n", "<Leader>se", "<C-w>=", opts) -- equalize splits
+vim.keymap.set("n", "<Leader>sx", "<C-w>c", opts) -- close split
 
 vim.keymap.set("n", "<Leader>bn", ":bnext<CR>", opts)
 vim.keymap.set("n", "<Leader>bp", ":bprevious<CR>", opts)
@@ -199,8 +235,15 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
 vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
 vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 
-vim.keymap.set("n", "<Leader>ff", function() require("telescope.builtin").find_files() end, opts)
-vim.keymap.set("n", "<Leader>fg", function() require("telescope.builtin").live_grep() end, opts)
-vim.keymap.set("n", "<Leader>fb", function() require("telescope.builtin").buffers() end, opts)
-vim.keymap.set("n", "<Leader>fh", function() require("telescope.builtin").help_tags() end, opts)
-
+vim.keymap.set("n", "<Leader>ff", function()
+    require("telescope.builtin").find_files()
+end, opts)
+vim.keymap.set("n", "<Leader>fg", function()
+    require("telescope.builtin").live_grep()
+end, opts)
+vim.keymap.set("n", "<Leader>fb", function()
+    require("telescope.builtin").buffers()
+end, opts)
+vim.keymap.set("n", "<Leader>fh", function()
+    require("telescope.builtin").help_tags()
+end, opts)
