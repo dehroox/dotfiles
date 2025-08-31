@@ -269,6 +269,10 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
 vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
 vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 
+vim.keymap.set("n", "<space>e", function()
+    vim.diagnostic.open_float(nil, { scope = "line" })
+end, opts)
+
 vim.keymap.set("n", "<Leader>ff", function()
     require("telescope.builtin").find_files()
 end, opts)
