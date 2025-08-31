@@ -71,7 +71,7 @@ require("lazy").setup({
         lazy = false,
         priority = 1000,
         config = function()
-            vim.cmd.colorscheme("kanagawa-dragon")
+            vim.cmd.colorscheme("kanagawa")
         end,
     },
 
@@ -83,7 +83,7 @@ require("lazy").setup({
         config = function()
             require("lualine").setup({
                 options = {
-                    theme = "kanagawa-dragon",
+                    theme = "kanagawa",
                     globalstatus = true,
                 },
             })
@@ -140,11 +140,29 @@ require("lazy").setup({
         config = true,
     },
 
+    -- Autocomplete (Coq)
+    {
+        "ms-jpq/coq_nvim",
+        branch = "coq",
+        event = "BufReadPre",
+        dependencies = {
+            "ms-jpq/coq.artifacts",
+            "ms-jpq/coq.thirdparty"
+        },
+        config = function()
+            vim.g.coq_settings = { auto_start = true, }
+
+            vim.cmd{ cmd = "COQnow", args = {"-s"} }
+        end,
+    },
 })
 
 -- LSP
+local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
+lsp_capabilities =  require("coq").lsp_ensure_capabilities(lsp_capabilities)
+
 vim.lsp.config("*", {
-    capabilities = vim.lsp.protocol.make_client_capabilities(),
+    capabilities = lsp_capabilities,
 })
 
 vim.lsp.enable("luals")

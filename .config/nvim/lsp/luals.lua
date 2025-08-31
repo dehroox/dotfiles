@@ -23,6 +23,11 @@ return {
                     'require',
                 },
             },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true), -- load Neovim runtime
+                checkThirdParty = false,
+            },
+            telemetry = { enable = false },
         },
     }
 }
