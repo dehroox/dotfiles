@@ -10,7 +10,6 @@ vim.pack.add({
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
     { src = "https://github.com/nvim-lualine/lualine.nvim" },
     { src = "https://github.com/windwp/nvim-autopairs" },
-    { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("*") },
     { src = "https://github.com/rafamadriz/friendly-snippets" },
     { src = "https://github.com/mfussenegger/nvim-lint" },
     { src = "https://github.com/stevearc/conform.nvim" },
@@ -35,14 +34,6 @@ require("nvim-treesitter").setup({
     ignore_install = {},
 })
 
-require("blink.cmp").setup({
-    keymap = { preset = "default" },
-    appearance = { nerd_font_variant = "mono" },
-    completion = { ghost_text = { enabled = true }, documentation = { auto_show = true, auto_show_delay_ms = 200 } },
-    sources = { default = { "lsp", "path", "snippets", "buffer" } },
-    fuzzy = { implementation = "prefer_rust_with_warning" },
-})
-
 require("lint").linters_by_ft = { lua = { "selene" }, c = { "clangtidy" }, cpp = { "clangtidy" } }
 vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
     callback = function()
@@ -57,8 +48,8 @@ require("conform").setup({
 
 require("bufferline").setup()
 
+vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 vim.lsp.config("*", { capabilities = capabilities })
 vim.lsp.enable({ "luals", "clangd" })
 
@@ -88,8 +79,6 @@ vim.opt.swapfile = false
 
 local undodir = vim.fn.stdpath("state") .. "/undo"
 vim.opt.undodir = undodir
-
-vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
