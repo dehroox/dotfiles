@@ -118,3 +118,6 @@ map("n", "<space>e", function()
 end, opts)
 
 map("n", "<leader>f", ":Pick files<CR>")
+
+map("v", "J", ":m '>+1<CR>gv=gv", opts)
+map("v", "K", ":m '<-2<CR>gv=gv", opts)
