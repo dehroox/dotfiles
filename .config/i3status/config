@@ -6,6 +6,7 @@ general {
 order += "ethernet _first_"
 order += "battery all"
 order += "tztime local"
+order += "volume master"
 
 ethernet _first_ {
         format_up = "E: %ip (%speed)"
@@ -19,3 +20,10 @@ battery all {
 tztime local {
         format = "%Y-%m-%d %I:%M:%S"
 }
+
+volume master {
+    format = "V: %volume"
+    format_muted = "V: muted"
+    device = "pulse"
+}
+
