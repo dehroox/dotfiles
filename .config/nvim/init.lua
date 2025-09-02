@@ -3,7 +3,7 @@ vim.loader.enable()
 vim.g.mapleader = " "
 
 vim.pack.add({
-    { src = "https://github.com/rebelot/kanagawa.nvim" },
+    { src = "https://github.com/ellisonleao/gruvbox.nvim" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/echasnovski/mini.pick" },
@@ -16,7 +16,8 @@ vim.pack.add({
     { src = "https://github.com/akinsho/bufferline.nvim" },
 })
 
-vim.cmd.colorscheme("kanagawa-dragon")
+vim.o.background = "dark"
+vim.cmd.colorscheme("gruvbox")
 
 require("lualine").setup({ options = { theme = "kanagawa", globalstatus = true } })
 require("gitsigns").setup()
