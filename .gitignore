@@ -4,4 +4,5 @@ lazy-lock.json
 undo/
 fish_history
 fishd.*
+.config/fish/fish_variables
 generated_completions/*
