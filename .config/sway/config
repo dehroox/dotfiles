@@ -15,6 +15,7 @@ set $right l
 set $term foot
 set $menu wmenu-run
 set $file nautilus
+set $browser thorium-browser-avx2
 
 output * bg /home/derek/Pictures/wallpaper.png fill
 
@@ -26,6 +27,7 @@ output * bg /home/derek/Pictures/wallpaper.png fill
     bindsym $mod+Return exec $term
 
     bindsym $mod+t exec $file
+    bindsym $mod+Tab  exec $browser
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -44,8 +46,7 @@ output * bg /home/derek/Pictures/wallpaper.png fill
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-#
+    bindsym $mod+Shift+e exec swaymsg exit
 # Moving around:
 #
     # Move your focus around
