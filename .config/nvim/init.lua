@@ -19,7 +19,7 @@ vim.pack.add({
 vim.o.background = "dark"
 vim.cmd.colorscheme("gruvbox")
 
-require("lualine").setup({ options = { theme = "kanagawa", globalstatus = true } })
+require("lualine").setup({ options = { globalstatus = true } })
 require("gitsigns").setup()
 require("mini.pick").setup()
 require("nvim-autopairs").setup()
@@ -52,7 +52,7 @@ require("bufferline").setup()
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 vim.lsp.config("*", { capabilities = capabilities })
-vim.lsp.enable({ "luals", "clangd" })
+vim.lsp.enable({ "luals", "clangd", "zls" })
 
 vim.opt.termguicolors = true
 vim.opt.number = true
@@ -65,7 +65,7 @@ vim.opt.listchars = { tab = "» ", trail = "•" }
 
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.opt.expandtab = false
 vim.opt.smartindent = true
 
 vim.opt.hlsearch = true
