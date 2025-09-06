@@ -51,8 +51,10 @@ require("bufferline").setup()
 
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-vim.lsp.config("*", { capabilities = capabilities })
-vim.lsp.enable({ "luals", "clangd", "zls" })
+vim.lsp.config("*", {
+    capabilities = capabilities,
+})
+vim.lsp.enable({ "luals", "clangd" })
 
 vim.opt.termguicolors = true
 vim.opt.number = true
@@ -94,9 +96,9 @@ map("n", "<Leader>sh", "<C-w>s", opts)
 map("n", "<Leader>se", "<C-w>=", opts)
 map("n", "<Leader>sx", "<C-w>c", opts)
 
-map("n", "<Tab>", ":bnext<CR>", opts)
-map("n", "<S-Tab>", ":bprevious<CR>", opts)
-map("n", "<Tab>d", ":bdelete<CR>", opts)
+map("n", "<Leader>bn", ":bnext<CR>", opts)
+map("n", "<Leader>bb", ":bprevious<CR>", opts)
+map("n", "<Leader>bd", ":bdelete<CR>", opts)
 
 map("n", "<C-h>", "<C-w>h", opts)
 map("n", "<C-j>", "<C-w>j", opts)
@@ -107,7 +109,35 @@ map("n", "<space>e", function()
     vim.diagnostic.open_float(nil, { scope = "line" })
 end, opts)
 
-map("n", "<leader>f", ":Pick files<CR>")
+map("n", "K", vim.lsp.buf.hover, opts)
+map("n", "gd", vim.lsp.buf.definition, opts)
+map("n", "gr", vim.lsp.buf.references, opts)
+map("n", "<leader>rn", vim.lsp.buf.rename, opts)
+map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+map("n", "[d", function()
+    vim.diagnostic.jump({ count = -1 })
+end, opts)
+map("n", "]d", function()
+    vim.diagnostic.jump({ count = 1 })
+end, opts)
+map("n", "<leader>f", function()
+    vim.lsp.buf.format({ async = true })
+end, opts)
+
+map("n", "<leader>ff", ":Pick files<CR>")
 
 map("v", "J", ":m '>+1<CR>gv=gv", opts)
 map("v", "K", ":m '<-2<CR>gv=gv", opts)
+
+map("", "<Up>", "<Nop>")
+map("", "<Down>", "<Nop>")
+map("", "<Left>", "<Nop>")
+map("", "<Right>", "<Nop>")
+
+map({ "n", "v" }, "<Leader>y", [["+y]])
+map("n", "<Leader>Y", [["+Y]])
+
+map("n", "<C-Up>", ":resize -2<CR>")
+map("n", "<C-Down>", ":resize +2<CR>")
+map("n", "<C-Left>", ":vertical resize -2<CR>")
+map("n", "<C-Right>", ":vertical resize +2<CR>")

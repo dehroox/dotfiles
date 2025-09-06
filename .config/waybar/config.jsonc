@@ -1,0 +1,24 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+	"position": "top",
+	"spacing": 4,
+	"modules-left": [
+        "custom/arch",
+        "river/workspaces",
+		"river/tags"
+    ],
+    "modules-center": [
+        "river/window"
+    ],
+    "modules-right": [
+		"network",
+        "pulseaudio",
+        "battery",
+		"clock"
+	],
+
+    "include": [
+		"~/.config/waybar/modules.json"
+	]
+}
