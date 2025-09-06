@@ -1,0 +1,61 @@
+[theme]
+name = "Wallust"
+author = "Derek"
+description = "Minimal dark theme inspired by Wallust aesthetics"
+
+; =========================
+; General Colors
+; =========================
+primary_color = "#010101"
+secondary_color = "#F8B63F"
+background_color = "#7FB5E1"
+foreground_color = "#D6DA25"
+
+; =========================
+; Bars
+; =========================
+bar_bg = "#489E48"
+bar_fg = "#B296C6"
+bar_graph = "#F5BFD7"
+
+; =========================
+; CPU
+; =========================
+cpu_usage_fg = "#A8A49D"
+cpu_usage_bg = "#726E6A"
+cpu_label = "#F8B63F"
+
+; =========================
+; RAM
+; =========================
+ram_usage_fg = "#7FB5E1"
+ram_usage_bg = "#D6DA25"
+ram_label = "#489E48"
+
+; =========================
+; Network
+; =========================
+net_usage_fg = "#B296C6"
+net_usage_bg = "#F5BFD7"
+net_label = "#FEFBEA"
+
+; =========================
+; Disk
+; =========================
+disk_usage_fg = "#010101"
+disk_usage_bg = "#F8B63F"
+disk_label = "#7FB5E1"
+
+; =========================
+; Processes
+; =========================
+proc_fg = "#D6DA25"
+proc_bg = "#489E48"
+highlight_fg = "#B296C6"
+
+; =========================
+; Footer / Misc
+; =========================
+footer_fg = "#F5BFD7"
+footer_bg = "#A8A49D"
+

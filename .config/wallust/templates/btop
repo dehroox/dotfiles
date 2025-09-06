@@ -1,0 +1,61 @@
+[theme]
+name = "Wallust"
+author = "Derek"
+description = "Minimal dark theme inspired by Wallust aesthetics"
+
+; =========================
+; General Colors
+; =========================
+primary_color = "{{ color0 }}"
+secondary_color = "{{ color1 }}"
+background_color = "{{ color2 }}"
+foreground_color = "{{ color3 }}"
+
+; =========================
+; Bars
+; =========================
+bar_bg = "{{ color4 }}"
+bar_fg = "{{ color5 }}"
+bar_graph = "{{ color6 }}"
+
+; =========================
+; CPU
+; =========================
+cpu_usage_fg = "{{ color7 }}"
+cpu_usage_bg = "{{ color8 }}"
+cpu_label = "{{ color9 }}"
+
+; =========================
+; RAM
+; =========================
+ram_usage_fg = "{{ color10 }}"
+ram_usage_bg = "{{ color11 }}"
+ram_label = "{{ color12 }}"
+
+; =========================
+; Network
+; =========================
+net_usage_fg = "{{ color13 }}"
+net_usage_bg = "{{ color14 }}"
+net_label = "{{ color15 }}"
+
+; =========================
+; Disk
+; =========================
+disk_usage_fg = "{{ color0 }}"
+disk_usage_bg = "{{ color1 }}"
+disk_label = "{{ color2 }}"
+
+; =========================
+; Processes
+; =========================
+proc_fg = "{{ color3 }}"
+proc_bg = "{{ color4 }}"
+highlight_fg = "{{ color5 }}"
+
+; =========================
+; Footer / Misc
+; =========================
+footer_fg = "{{ color6 }}"
+footer_bg = "{{ color7 }}"
+
