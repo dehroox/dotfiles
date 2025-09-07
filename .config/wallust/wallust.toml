@@ -15,7 +15,7 @@ backend = "full"
 
 # What color space to use to produce and select the most prominent colors:
 # lab - labmixed - lch - lchmixed
-color_space = "lch"
+color_space = "lchmixed"
 
 # Use the most prominent colors in a way that makes sense, a scheme color palette:
 # dark - dark16 - darkcomp - darkcomp16
@@ -28,12 +28,12 @@ palette = "dark"
 # Ensures a "readable contrast" (OPTIONAL, disabled by default)
 # Should only be enabled when you notice an unreadable contrast frequently happening
 # with your images. The reference color for the contrast is the background color.
-#check_contrast = true
+check_contrast = true
 
 # Color saturation, between [1% and 100%] (OPTIONAL, disabled by default)
 # usually something higher than 50 increases the saturation and below
 # decreases it (on a scheme with strong and vivid colors)
-#saturation = 35
+saturation = 25
 
 # Alpha value for templating, by default 100 (no other use whatsoever)
 #alpha = 100
@@ -50,3 +50,5 @@ foot = { template = "foot.ini", target = "~/.config/foot/colors.ini" }
 waybar = { src = "waybar.css", dst = "~/.config/waybar/colors.css" }
 mako = { template = "colors-mako", target = "~/.config/mako/config" }
 btop = { src = "btop", dst = "~/.config/btop/themes/wallust.theme" }
+neopywal = { src = "wallust.vim", target = "~/.cache/wallust/colors_neopywal.vim" }
+

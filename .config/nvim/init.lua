@@ -14,10 +14,14 @@ vim.pack.add({
     { src = "https://github.com/mfussenegger/nvim-lint" },
     { src = "https://github.com/stevearc/conform.nvim" },
     { src = "https://github.com/akinsho/bufferline.nvim" },
+    { src = "https://github.com/RedsXDD/neopywal.nvim" },
 })
 
-vim.o.background = "dark"
-vim.cmd.colorscheme("gruvbox")
+require("neopywal").setup({
+    use_wallust = true,
+    transparent_background = true,
+})
+vim.cmd.colorscheme("neopywal")
 
 require("lualine").setup({ options = { globalstatus = true } })
 require("gitsigns").setup()
@@ -55,6 +59,30 @@ vim.lsp.config("*", {
     capabilities = capabilities,
 })
 vim.lsp.enable({ "luals", "clangd" })
+
+vim.diagnostic.config({
+    virtual_text = {
+        prefix = "●",
+        spacing = 2,
+        severity = { min = vim.diagnostic.severity.WARN },
+    },
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+    float = {
+        border = "rounded",
+        source = true,
+        header = "",
+        prefix = "",
+    },
+})
+
+local signs = { Error = "✗", Warn = "⚠", Hint = "➤", Info = "ℹ" }
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
 
 vim.opt.termguicolors = true
 vim.opt.number = true

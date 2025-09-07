@@ -6,56 +6,56 @@ description = "Minimal dark theme inspired by Wallust aesthetics"
 ; =========================
 ; General Colors
 ; =========================
-primary_color = "#010101"
-secondary_color = "#F8B63F"
-background_color = "#7FB5E1"
-foreground_color = "#D6DA25"
+primary_color = "#020000"
+secondary_color = "#744B54"
+background_color = "#737353"
+foreground_color = "#7E566A"
 
 ; =========================
 ; Bars
 ; =========================
-bar_bg = "#489E48"
-bar_fg = "#B296C6"
-bar_graph = "#F5BFD7"
+bar_bg = "#937461"
+bar_fg = "#937EB5"
+bar_graph = "#BD967E"
 
 ; =========================
 ; CPU
 ; =========================
-cpu_usage_fg = "#A8A49D"
-cpu_usage_bg = "#726E6A"
-cpu_label = "#F8B63F"
+cpu_usage_fg = "#D5CFCB"
+cpu_usage_bg = "#95918E"
+cpu_label = "#744B54"
 
 ; =========================
 ; RAM
 ; =========================
-ram_usage_fg = "#7FB5E1"
-ram_usage_bg = "#D6DA25"
-ram_label = "#489E48"
+ram_usage_fg = "#737353"
+ram_usage_bg = "#7E566A"
+ram_label = "#937461"
 
 ; =========================
 ; Network
 ; =========================
-net_usage_fg = "#B296C6"
-net_usage_bg = "#F5BFD7"
-net_label = "#FEFBEA"
+net_usage_fg = "#937EB5"
+net_usage_bg = "#BD967E"
+net_label = "#D5CFCB"
 
 ; =========================
 ; Disk
 ; =========================
-disk_usage_fg = "#010101"
-disk_usage_bg = "#F8B63F"
-disk_label = "#7FB5E1"
+disk_usage_fg = "#020000"
+disk_usage_bg = "#744B54"
+disk_label = "#737353"
 
 ; =========================
 ; Processes
 ; =========================
-proc_fg = "#D6DA25"
-proc_bg = "#489E48"
-highlight_fg = "#B296C6"
+proc_fg = "#7E566A"
+proc_bg = "#937461"
+highlight_fg = "#937EB5"
 
 ; =========================
 ; Footer / Misc
 ; =========================
-footer_fg = "#F5BFD7"
-footer_bg = "#A8A49D"
+footer_fg = "#BD967E"
+footer_bg = "#D5CFCB"
 
