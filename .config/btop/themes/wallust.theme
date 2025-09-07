@@ -7,16 +7,16 @@ description = "Minimal dark theme inspired by Wallust aesthetics"
 ; General Colors
 ; =========================
 primary_color = "#020000"
-secondary_color = "#744B54"
-background_color = "#737353"
-foreground_color = "#7E566A"
+secondary_color = "#65434C"
+background_color = "#656549"
+foreground_color = "#6D4C5C"
 
 ; =========================
 ; Bars
 ; =========================
-bar_bg = "#937461"
-bar_fg = "#937EB5"
-bar_graph = "#BD967E"
+bar_bg = "#7D6354"
+bar_fg = "#6F5E88"
+bar_graph = "#8E705E"
 
 ; =========================
 ; CPU
@@ -43,19 +43,19 @@ net_label = "#D5CFCB"
 ; Disk
 ; =========================
 disk_usage_fg = "#020000"
-disk_usage_bg = "#744B54"
-disk_label = "#737353"
+disk_usage_bg = "#65434C"
+disk_label = "#656549"
 
 ; =========================
 ; Processes
 ; =========================
-proc_fg = "#7E566A"
-proc_bg = "#937461"
-highlight_fg = "#937EB5"
+proc_fg = "#6D4C5C"
+proc_bg = "#7D6354"
+highlight_fg = "#6F5E88"
 
 ; =========================
 ; Footer / Misc
 ; =========================
-footer_fg = "#BD967E"
+footer_fg = "#8E705E"
 footer_bg = "#D5CFCB"
 

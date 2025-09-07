@@ -1,0 +1,18 @@
+background = "{{background}}ff"
+color = "{{foreground}}ff"
+separator = "{{foreground | darken(1)}}ff"
+tag_fg = "{{foreground}}ff"
+tag_bg = "{{color2}}ff"
+tag_focused_fg = "{{foreground}}ff"
+tag_focused_bg = "{{color10 | lighten(0.1) | saturate(0.2)}}ff"
+tag_urgent_fg = "{{foreground}}ff"
+tag_urgent_bg = "{{color1}}ff"
+tag_inactive_fg = "{{foreground}}ff"
+tag_inactive_bg = "{{color6}}ff"
+
+
+font = "SauceCodeProNF 10"
+height = 20
+command = "i3status"
+tags_padding = 5
+
