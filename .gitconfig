@@ -1,0 +1,7 @@
+[user]
+	email = dehrexd@gmail.com
+	name = dehroox
+[core]
+	editor = nvim
+[color]
+	ui = true
