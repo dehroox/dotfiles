@@ -14,14 +14,9 @@ vim.pack.add({
     { src = "https://github.com/mfussenegger/nvim-lint" },
     { src = "https://github.com/stevearc/conform.nvim" },
     { src = "https://github.com/akinsho/bufferline.nvim" },
-    { src = "https://github.com/RedsXDD/neopywal.nvim" },
 })
 
-require("neopywal").setup({
-    use_wallust = true,
-    transparent_background = true,
-})
-vim.cmd.colorscheme("neopywal")
+vim.cmd.colorscheme("gruvbox")
 
 require("lualine").setup({ options = { globalstatus = true } })
 require("gitsigns").setup()
@@ -47,7 +42,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
 })
 
 require("conform").setup({
-    formatters_by_ft = { lua = { "stylua" }, c = { "clang-format" }, cpp = { "clang-format" } },
+    formatters_by_ft = { lua = { "stylua" }, c = { "clang-format" }, cpp = { "clang-format" }, html = { "prettier" } },
     format_on_save = true,
 })
 

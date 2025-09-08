@@ -1,15 +1,3 @@
-background = "#020000ff"
-color = "#E8E3E1ff"
-separator = "#000000ff"
-tag_fg = "#E8E3E1ff"
-tag_bg = "#656549ff"
-tag_focused_fg = "#E8E3E1ff"
-tag_focused_bg = "#818150ff"
-tag_urgent_fg = "#E8E3E1ff"
-tag_urgent_bg = "#65434Cff"
-tag_inactive_fg = "#E8E3E1ff"
-tag_inactive_bg = "#8E705Eff"
-
 
 font = "SauceCodeProNF 10"
 height = 20

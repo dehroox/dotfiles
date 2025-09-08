@@ -7,6 +7,7 @@ riverctl spawn "mako";
 riverctl spawn "swaybg -i /home/derek/Pictures/wallpaper.png -m fill"
 
 # Status Bar
+riverctl spawn "i3bar-river"
 
 # Super+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
 riverctl map normal Super+Shift Return spawn foot
